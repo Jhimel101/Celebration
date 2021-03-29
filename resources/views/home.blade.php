@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('content')
+@include('header2')
+<div id="main">
+<section class="breadcrumbs">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -19,5 +23,8 @@
             </div>
         </div>
     </div>
+</div>
+</section>
+
 </div>
 @endsection
