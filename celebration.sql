@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2021 at 12:58 PM
+-- Generation Time: Mar 31, 2021 at 05:46 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `celebration`
+-- Database: `testcelebration`
 --
 
 -- --------------------------------------------------------
@@ -58,7 +58,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2021_03_27_110112_create_permission_tables', 2),
-(5, '2021_03_27_110224_create_products_table', 3);
+(5, '2021_03_27_110224_create_products_table', 3),
+(6, '2021_03_31_105928_create_users_table', 4),
+(7, '2021_03_31_110428_create_users_table', 5);
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,8 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
-(2, 'App\\Models\\User', 2);
+(2, 'App\\Models\\User', 2),
+(2, 'App\\Models\\User', 3);
 
 -- --------------------------------------------------------
 
@@ -144,9 +147,18 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `detail` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
+(1, 'raihan', 'sadffd', '2021-03-31 04:46:45', '2021-03-31 04:46:45');
 
 -- --------------------------------------------------------
 
@@ -194,6 +206,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (3, 1),
 (4, 1),
 (5, 1),
+(5, 2),
 (5, 3),
 (5, 4),
 (5, 5),
@@ -210,7 +223,9 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (8, 4),
 (8, 5),
 (9, 1),
-(9, 2);
+(10, 1),
+(11, 1),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -222,6 +237,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profile_image` varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -233,9 +249,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'jhimel', 'jhimel@gmail.com', NULL, '$2y$10$wI2tH0ouzOf0w.Ulek5isORRZPHvdXxeZiNcIrNT4npTbRoijWQAe', NULL, '2021-03-27 05:26:35', '2021-03-27 05:26:35'),
-(2, 'raihan', 'raihan@gmail.com', NULL, '$2y$10$7WyyIwOA2x2GRMkVSr7NdeZoy19zAC7bL8ecv3E/0JRpxHDWkZ.La', NULL, '2021-03-27 05:32:29', '2021-03-27 05:32:29');
+INSERT INTO `users` (`id`, `name`, `email`, `profile_image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'jhimel', 'jhimel@gmail.com', '/uploads/images/jhimel_1617194946.jpg', NULL, '$2y$10$wI2tH0ouzOf0w.Ulek5isORRZPHvdXxeZiNcIrNT4npTbRoijWQAe', NULL, '2021-03-27 05:26:35', '2021-03-31 06:49:06'),
+(2, 'raihan', 'raihan@gmail.com', '/uploads/images/raihan_1617194373.jpg', NULL, '$2y$10$7WyyIwOA2x2GRMkVSr7NdeZoy19zAC7bL8ecv3E/0JRpxHDWkZ.La', NULL, '2021-03-27 05:32:29', '2021-03-31 06:39:33'),
+(3, 'mishal', 'misahl@gmail.com', '', NULL, '$2y$10$MJRo0zF/dc/Cl.QPTJbuXOJLbzvF9Ffuzr2sSLuhlVxL01TvM6cNO', NULL, '2021-03-27 09:25:02', '2021-03-27 09:25:02');
 
 --
 -- Indexes for dumped tables
@@ -322,7 +339,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -334,7 +351,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -346,7 +363,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
