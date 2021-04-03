@@ -1,12 +1,12 @@
 <?php
-  
+
 use Illuminate\Support\Facades\Route;
-  
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
-  
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,15 +17,24 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-  
+
 Route::get('/', function () {
     return view('welcome');
-});
-  
+})->name('welcome');
+
+Route::get('about', function() {
+    return view('about');
+})->name('about');
+
+Route::get('faq', function(){
+    return view('faq');
+})->name('faq');
+
 Auth::routes();
-  
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-  
+//Route::get('about', [HomeController::class, 'about'])->name('about');
+
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);

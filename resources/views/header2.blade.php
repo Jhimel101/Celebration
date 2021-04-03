@@ -5,23 +5,24 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
-        <a href="index.html"><img src="img/logo1.png" style="width: 126px; height: 32px;" alt=""></a>
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="index.html">Regna</a></h1>-->
+        <a href="{{Route('welcome')}}"><img src="img/logo1.png" style="width: 126px; height: 32px;" alt=""></a>
+
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
 
         @guest
-        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+        <li><a class="nav-link scrollto active" href="{{Route('welcome')}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{ Route('about') }}">About</a></li>
+          <li><a class="nav-link scrollto" href="{{Route('faq')}}">FAQ</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="{{ route('login') }}">{{ __('Login') }}</a></li>
           <li><a class="nav-link scrollto" href="{{ route('register') }}">{{ __('Register') }}</a></li>
           @else
 
-          
-          
+
+
           <li class="dropdown"><a href="#"><span>Event Catagories</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Wedding</a></li>
@@ -30,13 +31,13 @@
                   <li><a href="#">Seminar</a></li>
                   <li><a href="#">Conference</a></li>
                   <li><a href="#">Office Party</a></li>
-                  
-                
+
+
                 </ul>
               </li>
               <li><a href="#">Birthday party</a></li>
               <li><a href="#">Social Function</a></li>
-              
+
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>Essential Services</span> <i class="bi bi-chevron-down"></i></a>
@@ -49,7 +50,7 @@
               <li><a href="#">Gifts</a></li>
             </ul>
           </li>
-          
+
 
 
           <li><a class="nav-link scrollto" href="{{ route('users.index') }}">Users</a></li>
@@ -64,16 +65,16 @@
                                         {{ __('Logout') }}
                                     </a>
                                     </li>
-                                    
-                                   
+
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
-                                   
-                                   
+
+
                                     </ul>
 
-                                    
+
                                 </li>
           @endguest
         </ul>
